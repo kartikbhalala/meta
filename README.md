@@ -8,7 +8,6 @@
 
 ![Project Overview](./images/agents.png)
 
-This project was created as part of a hackathon challenge to explore how **AI** can be used to transform bureaucratic and technical jargon into **plain, accessible English** that complies with the **Australian Government Style Manual**. The AI-Powered Document Review System automates the review and revision of complex government content to make it clearer, more accurate, and accessible to a wider audience.
 
 The system utilizes multiple specialized AI agents that review different aspects of a document (grammar, structure, accessibility, formatting, and citations). These agents ensure that the document adheres to Australian English rules, improves accessibility for people with disabilities, and follows style guidelines. The changes are applied automatically, with the system providing a summary of where and how the document was edited, allowing users to easily track the revisions.
 
