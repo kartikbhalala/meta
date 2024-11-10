@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- ICONS -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- STYLESHEET -->
+    <link rel="stylesheet" href="style.css" />
+    <title>GovText AI - Admin Dashboard</title>
+</head>
+<body style="margin: 0;">
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="menu-btn">
+                <i class="ph-bold ph-caret-left"></i>
+            </div>
+            <div class="head">
+                <div class="user-img">
+                    <img src="user.png" alt="User" />
+                </div>
+                <div class="user-details">
+                    <p class="title">Mr.</p>
+                    <p class="name">Kartik Bhalala</p>
+                </div>
+            </div>
+            <div class="nav">
+                <div class="menu">
+                    <p class="title">Main</p>
+                    <ul>
+                        <li class="active">
+                            <a href="#">
+                                <i class="icon ph-bold ph-chat-circle"></i> <!-- Chat service icon -->
+                                <span class="text">Simplify Service</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.stylemanual.gov.au/">
+                                <i class="icon ph-bold ph-book-open-text"></i> <!-- Style guide icon -->
+                                <span class="text">Style Guide</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.stylemanual.gov.au/sitemap.xml">
+                                <i class="icon ph-bold ph-file-text"></i> <!-- Resources icon -->
+                                <span class="text">Resources</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="menu">
+                    <p class="title">Settings</p>
+                    <ul>
+                        <li><a href="#"><i class="icon ph-bold ph-gear"></i><span class="text">Settings</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="menu">
+                <p class="title">Account</p>
+                <ul>
+                    <li><a href="#"><i class="icon ph-bold ph-info"></i><span class="text">Help</span></a></li>
+                    <li><a href="#" id="logoutButton"><i class="icon ph-bold ph-sign-out"></i><span class="text">Logout</span></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Insert Full-Screen Chatbot here -->
+            <flowise-fullchatbot></flowise-fullchatbot>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./script.js"></script>
+    <script type="module">
+        import Chatbot from './FlowiseChatEmbed/dist/web.js';
+        
+        Chatbot.initFull({
+            chatflowid: '9523bf5e-a600-4873-a93a-d496f8a59a4b',  // Your chatflow ID
+            apiHost: 'http://34.238.124.240:3000',  // Your Flowise API endpoint
+            theme: {
+                button: {
+                    backgroundColor: '#247613',  // Button color
+                    right: 20,
+                    bottom: 20,
+                    size: 'medium',  // Button size
+                    iconColor: 'white',
+                    customIconSrc: 'https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/svg/google-messages.svg',
+                    borderRadius: '50%',  // Make the button round
+                },
+                chatWindow: {
+                    showTitle: true,  // Keep the title with the refresh button
+                    title: 'Simplify - Government simplified for all Australians',  // Customized title
+                    titleBackgroundColor: '#3f3f3f',  // Lighter gray header background to match theme
+                    titleTextColor: '#ffffff',  // White text for the title
+                    titleBorderRadius: '10px',  // Rounded corners for the title/header
+                    welcomeMessage: "Welcome to Simplify! I’m here to make government content clear and accessible. Paste text, drop a link, or ask me anything to get started. 😊",
+                    errorMessage: 'This is a custom error message',
+                    backgroundColor: '#ffffff',  // White background for chat window
+                    height: '100%',  // Full-screen height
+                    width: '100%',  // Full-screen width
+                    fontSize: 16,
+                    poweredByTextColor: '#303235',  // Dark gray "Powered by" text
+                    botMessage: {
+                        backgroundColor: '#e3e3e3',  // Light gray for bot messages
+                        textColor: '#303235',  // Black text color for bot messages
+                        showAvatar: true,
+                        avatarSrc: './ai.gif',  // Bot avatar
+                    },
+                    userMessage: {
+                        backgroundColor: '#b0b0b0',  // Light gray background for user messages
+                        textColor: '#000000',  // White text color for user messages
+                        showAvatar: true,
+                        avatarSrc: './user.png',  // User avatar
+                    },
+                    textInput: {
+                        placeholder: 'Type your question',
+                        backgroundColor: '#f0f0f0',  // Light gray input field
+                        textColor: '#000000',  // Black text for input field
+                        sendButtonColor: '#000000',  // Black send button to match the theme
+                    }
+                }
+            }
+        });
+    </script>
+
+    <script>
+        // Handle authentication and logout
+        const authData = localStorage.getItem('admin_auth');
+        if (!authData) {
+            window.location.href = 'login.html';
+        }
+        document.getElementById('logoutButton').addEventListener('click', function(e) {
+            e.preventDefault();
+            localStorage.removeItem('admin_auth');
+            window.location.href = 'login.html';
+        });
+    </script>
+    
+</body>
+</html>

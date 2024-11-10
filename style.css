@@ -1,0 +1,295 @@
+@import url(https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900);
+
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+
+:root {
+    --hover-color: #fff; /* Unified hover color set to white */
+}
+
+body {
+    background-color: #f7f7f7; /* Set a lighter background color for the entire page */
+}
+
+.container {
+    display: flex;
+    align-items: stretch; /* Stretch to full height */
+    width: 100%;
+    min-height: 100vh;
+}
+
+.sidebar {
+    position: fixed; /* Fixed positioning to keep sidebar in place */
+    width: 256px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #000; /* Set sidebar background to dark black */
+    padding: 24px;
+    border-radius: 0; /* Remove rounded corners for a sleek, modern look */
+    border-right: 1px solid #303030; /* Dark border for a sleeker look */
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05); /* Light shadow for a card-like effect */
+    transition: all 0.3s;
+    color: #fff; /* Set default text color to white for contrast */
+}
+
+.sidebar .head {
+    display: flex;
+    gap: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #444;
+}
+
+.user-img {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.user-img img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.user-details .title,
+.menu .title {
+    font-size: 10px;
+    font-weight: 500;
+    color: #ccc; /* Lighter color for section titles */
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.user-details .name {
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff; /* Set user name color to white */
+}
+
+.nav {
+    flex: 1;
+}
+
+.menu ul li {
+    position: relative;
+    list-style: none;
+    margin-bottom: 5px;
+}
+
+.menu ul li a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff; /* White color for the menu text */
+    text-decoration: none;
+    padding: 12px 8px;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+}
+
+.menu ul li a:hover,
+.menu ul li.active > a {
+    color: #fff; /* Keep hover text color white */
+    background-color: rgba(255, 255, 255, 0.1); /* Light white hover background */
+}
+
+.menu ul li .icon {
+    font-size: 20px;
+    color: #fff; /* White icons */
+}
+
+.menu ul li .text {
+    flex: 1;
+}
+
+.menu ul li .arrow {
+    font-size: 14px;
+    transition: all 0.3s;
+    color: #fff; /* Arrow color white */
+}
+
+.menu ul li.active .arrow {
+    transform: rotate(180deg);
+}
+
+.menu .sub-menu {
+    display: none;
+    margin-left: 20px;
+    padding-left: 20px;
+    padding-top: 5px;
+    border-left: 1px solid #444;
+}
+
+.menu .sub-menu li a {
+    padding: 10px 8px;
+    font-size: 12px;
+    color: #fff; /* White text for sub-menu */
+}
+
+.menu:not(:last-child) {
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #444;
+}
+
+.menu-btn {
+    position: absolute;
+    right: -14px;
+    top: 3.5%;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #fff;
+    border: 2px solid #444;
+    background-color: #333;
+    transition: all 0.3s;
+}
+
+.menu-btn:hover i {
+    color: #fff;
+}
+
+.menu-btn i {
+    transition: all 0.3s;
+}
+
+.sidebar.active {
+    width: 92px;
+    border-radius: 0; /* Keep no rounded corners when collapsed */
+}
+
+.sidebar.active .menu-btn i {
+    transform: rotate(180deg);
+}
+
+.sidebar.active .user-details {
+    display: none;
+}
+
+.sidebar.active .menu .title {
+    text-align: center;
+}
+
+.sidebar.active .menu ul li .arrow {
+    display: none;
+}
+
+.sidebar.active .menu > ul > li > a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar.active .menu > ul > li > a .text {
+    position: absolute;
+    left: 70px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 10px;
+    border-radius: 4px;
+    color: #fff;
+    background-color: #000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+}
+
+.sidebar.active .menu > ul > li > a:hover .text {
+    left: 50px;
+    opacity: 1;
+    visibility: visible;
+}
+
+.sidebar.active .menu .sub-menu {
+    position: absolute;
+    top: 0;
+    left: 20px;
+    width: 200px;
+    border-radius: 20px;
+    padding: 10px 20px;
+    border: 1px solid #444;
+    background-color: #000;
+    box-shadow: 0px 10px 8px rgba(0, 0, 0, 0.1);
+}
+
+.main-content {
+    margin-left: 256px; /* Adjust for sidebar width */
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #f7f7f7; /* Lighter background for main content */
+    transition: margin-left 0.3s; /* Smooth transition when sidebar collapses */
+}
+
+.sidebar.active ~ .main-content {
+    margin-left: 92px; /* Adjust content margin when sidebar is collapsed */
+}
+
+/* Content Enhancements */
+.content-area {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.card h2, .card h3 {
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: #555;
+}
+
+/* Button Styling */
+button {
+    background-color: #000; /* Black button color */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #333; /* Darker shade of black */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    
+    .main-content {
+        margin-left: 0;
+        margin-top: 20px;
+    }
+    
+    .sidebar.active ~ .main-content {
+        margin-left: 0;
+    }
+}

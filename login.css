@@ -1,0 +1,109 @@
+@import url(https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900);
+
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+
+body {
+    background-color: #f4f6f9; /* Light background to match overall style */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-card {
+    background-color: #fff;
+    border-radius: 24px; /* Increased border-radius for smoother rounding */
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.08); /* Softer shadow for a floating effect */
+    padding: 30px;
+    width: 100%;
+    text-align: center;
+}
+
+
+.login-header h2 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.login-header p {
+    margin-bottom: 20px;
+    color: #777;
+    font-size: 14px;
+}
+
+.login-form .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.login-form .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #555;
+}
+
+.login-form .form-group input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    color: #333;
+    transition: border-color 0.3s;
+}
+
+.login-form .form-group input:focus {
+    border-color: #000; /* Black border on focus to match hover effect */
+}
+
+.login-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #000; /* Black button color */
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: #333; /* Darker shade of black */
+}
+
+.login-footer {
+    margin-top: 20px;
+}
+
+.login-footer p {
+    color: #555;
+    font-size: 14px;
+}
+
+.login-footer a {
+    color: #000;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.login-footer a:hover {
+    color: #333; /* Darker shade on hover */
+}

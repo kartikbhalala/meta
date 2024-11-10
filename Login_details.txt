@@ -1,0 +1,4 @@
+pocketbase and default users panel ID/password:
+
+kartikbhalala3310@gmail.com
+Admin@12345

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- ICONS -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- STYLESHEET -->
+    <link rel="stylesheet" href="login.css" />
+    <title>Login</title>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <h2>Login</h2>
+                <p>Enter your credentials to access your account</p>
+            </div>
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="login-button">Login</button>
+            </form>
+            <div class="login-footer">
+                <p><a href="#">Forgot your password?</a></p>
+            </div>
+            <p id="message"></p> <!-- Display login messages here -->
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    // First attempt to login as an admin
+    try {
+        const adminResponse = await fetch('http://34.238.124.240:8090/api/admins/auth-with-password', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                identity: email,
+                password: password
+            })
+        });
+
+        if (adminResponse.ok) {
+            const adminData = await adminResponse.json();
+            localStorage.setItem('admin_auth', JSON.stringify(adminData));
+            window.location.href = 'index.html'; // Redirect to the admin dashboard
+        } else {
+            // If admin login fails, attempt client login
+            const clientResponse = await fetch('http://34.238.124.240:8090/api/collections/users/auth-with-password', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    identity: email,
+                    password: password
+                })
+            });
+
+            if (clientResponse.ok) {
+                const clientData = await clientResponse.json();
+                localStorage.setItem('client_auth', JSON.stringify(clientData));
+                window.location.href = 'client.html'; // Redirect to the client dashboard
+            } else {
+                const errorData = await clientResponse.json();
+                document.getElementById('message').textContent = 'Login failed: ' + (errorData.message || clientResponse.statusText);
+            }
+        }
+    } catch (error) {
+        document.getElementById('message').textContent = 'An error occurred: ' + error.message;
+    }
+});
+
+    </script>
+</body>
+</html>

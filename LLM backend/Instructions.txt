@@ -1,0 +1,2 @@
+setup flowise and import the agentic flow using the govhack Agents.json file and also setup your openai credentials.
+
