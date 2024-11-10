@@ -27,18 +27,7 @@ The aim of this project is to provide government organizations with an automated
 - **Enhance accessibility**: Ensure that content is accessible to people with varying literacy levels and disabilities, supporting diverse communities.
 - **Improve efficiency**: Streamline the document review process by applying AI agents that are able to correct grammar, enhance structure, and format content according to style guidelines, making the process faster and more accurate.
 
-## Screenshots
 
-### Users login Screen:
-![Original Document](images/login.jpeg)
-
-### Users Main Screen:
-![Reviewed Document](images/first.png)
-
-### Document After AI Review:
-![Summary of Changes](images/finaloutput.png)
-
----
 
 ## Technologies Used
 
